@@ -46,9 +46,6 @@ public class Weapon {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "weapon")
-    private List<Inventory_weapon> inventory_weapons;
-
     public Weapon() {
 
     }

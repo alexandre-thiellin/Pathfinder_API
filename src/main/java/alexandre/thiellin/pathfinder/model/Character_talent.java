@@ -3,8 +3,8 @@ package alexandre.thiellin.pathfinder.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "character_classes")
-public class Character_class {
+@Table(name = "character_talents")
+public class Character_talent {
 
     @Id
     private long id;
@@ -14,22 +14,18 @@ public class Character_class {
     private Character character;
 
     @ManyToOne
-    @JoinColumn(name = "class_id", nullable = false)
-    private Class class_;
+    @JoinColumn(name = "talent_id", nullable = false)
+    private Talent talent;
 
-    @Column(nullable = false)
-    private int lvl;
-
-    public Character_class() {
+    public Character_talent() {
 
     }
 
-    public Character_class(int id, Character character, Class class_, int lvl) {
+    public Character_talent(long id, Character character, Talent talent) {
 
         this.id = id;
         this.character = character;
-        this.class_ = class_;
-        this.lvl = lvl;
+        this.talent = talent;
     }
 
     public long getId() {
@@ -52,23 +48,13 @@ public class Character_class {
         this.character = character;
     }
 
-    public Class getClass_() {
+    public Talent getTalent() {
 
-        return class_;
+        return talent;
     }
 
-    public void setClass_(Class class_) {
+    public void setTalent(Talent talent) {
 
-        this.class_ = class_;
-    }
-
-    public int getLvl() {
-
-        return lvl;
-    }
-
-    public void setLvl(int lvl) {
-
-        this.lvl = lvl;
+        this.talent = talent;
     }
 }

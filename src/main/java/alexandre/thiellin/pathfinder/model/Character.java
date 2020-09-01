@@ -72,7 +72,22 @@ public class Character {
     private List<Character_class> character_classes;
 
     @OneToMany(mappedBy = "character")
+    private List<Character_skill> character_skills;
+
+    @OneToMany(mappedBy = "character")
+    private List<Character_talent> character_talents;
+
+    @OneToMany(mappedBy = "character")
+    private List<Character_spell> character_spells;
+
+    @OneToMany(mappedBy = "character")
     private List<Inventory_weapon> inventory_weapons;
+
+    @OneToMany(mappedBy = "character")
+    private List<Inventory_armor> inventory_armors;
+
+    @OneToMany(mappedBy = "character")
+    private List<Inventory_Item> inventory_items;
 
     public Character(){}
 
@@ -310,6 +325,36 @@ public class Character {
         this.character_classes = character_classes;
     }
 
+    public List<Character_skill> getCharacter_skills() {
+
+        return character_skills;
+    }
+
+    public void setCharacter_skills(List<Character_skill> character_skills) {
+
+        this.character_skills = character_skills;
+    }
+
+    public List<Character_talent> getCharacter_talents() {
+
+        return character_talents;
+    }
+
+    public void setCharacter_talents(List<Character_talent> character_talents) {
+
+        this.character_talents = character_talents;
+    }
+
+    public List<Character_spell> getCharacter_spells() {
+
+        return character_spells;
+    }
+
+    public void setCharacter_spells(List<Character_spell> character_spells) {
+
+        this.character_spells = character_spells;
+    }
+
     public List<Inventory_weapon> getInventory_weapons() {
 
         return inventory_weapons;
@@ -318,5 +363,25 @@ public class Character {
     public void setInventory_weapons(List<Inventory_weapon> inventory_weapons) {
 
         this.inventory_weapons = inventory_weapons;
+    }
+
+    public List<Inventory_armor> getInventory_armors() {
+
+        return inventory_armors;
+    }
+
+    public void setInventory_armors(List<Inventory_armor> inventory_armors) {
+
+        this.inventory_armors = inventory_armors;
+    }
+
+    public List<Inventory_Item> getInventory_items() {
+
+        return inventory_items;
+    }
+
+    public void setInventory_items(List<Inventory_Item> inventory_items) {
+
+        this.inventory_items = inventory_items;
     }
 }

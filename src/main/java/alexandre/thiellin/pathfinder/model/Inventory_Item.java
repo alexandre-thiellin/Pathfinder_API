@@ -1,10 +1,12 @@
 package alexandre.thiellin.pathfinder.model;
 
+import org.springframework.jmx.export.annotation.ManagedAttribute;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "character_classes")
-public class Character_class {
+@Table(name = "inventory_items")
+public class Inventory_Item {
 
     @Id
     private long id;
@@ -14,22 +16,22 @@ public class Character_class {
     private Character character;
 
     @ManyToOne
-    @JoinColumn(name = "class_id", nullable = false)
-    private Class class_;
+    @JoinColumn(name = "item_id", nullable = false)
+    private Item item;
 
     @Column(nullable = false)
-    private int lvl;
+    private boolean equipped;
 
-    public Character_class() {
+    public Inventory_Item() {
 
     }
 
-    public Character_class(int id, Character character, Class class_, int lvl) {
+    public Inventory_Item(long id, Character character, Item item, boolean equipped) {
 
         this.id = id;
         this.character = character;
-        this.class_ = class_;
-        this.lvl = lvl;
+        this.item = item;
+        this.equipped = equipped;
     }
 
     public long getId() {
@@ -52,23 +54,23 @@ public class Character_class {
         this.character = character;
     }
 
-    public Class getClass_() {
+    public Item getItem() {
 
-        return class_;
+        return item;
     }
 
-    public void setClass_(Class class_) {
+    public void setItem(Item item) {
 
-        this.class_ = class_;
+        this.item = item;
     }
 
-    public int getLvl() {
+    public boolean isEquipped() {
 
-        return lvl;
+        return equipped;
     }
 
-    public void setLvl(int lvl) {
+    public void setEquipped(boolean equipped) {
 
-        this.lvl = lvl;
+        this.equipped = equipped;
     }
 }

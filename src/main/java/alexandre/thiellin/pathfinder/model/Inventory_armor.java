@@ -3,8 +3,8 @@ package alexandre.thiellin.pathfinder.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "character_classes")
-public class Character_class {
+@Table(name = "inventory_armors")
+public class Inventory_armor {
 
     @Id
     private long id;
@@ -14,22 +14,22 @@ public class Character_class {
     private Character character;
 
     @ManyToOne
-    @JoinColumn(name = "class_id", nullable = false)
-    private Class class_;
+    @JoinColumn(name = "armor_id", nullable = false)
+    private Armor armor;
 
     @Column(nullable = false)
-    private int lvl;
+    private boolean equipped;
 
-    public Character_class() {
+    public Inventory_armor() {
 
     }
 
-    public Character_class(int id, Character character, Class class_, int lvl) {
+    public Inventory_armor(long id, Character character, Armor armor, boolean equipped) {
 
         this.id = id;
         this.character = character;
-        this.class_ = class_;
-        this.lvl = lvl;
+        this.armor = armor;
+        this.equipped = equipped;
     }
 
     public long getId() {
@@ -52,23 +52,23 @@ public class Character_class {
         this.character = character;
     }
 
-    public Class getClass_() {
+    public Armor getArmor() {
 
-        return class_;
+        return armor;
     }
 
-    public void setClass_(Class class_) {
+    public void setArmor(Armor armor) {
 
-        this.class_ = class_;
+        this.armor = armor;
     }
 
-    public int getLvl() {
+    public boolean isEquipped() {
 
-        return lvl;
+        return equipped;
     }
 
-    public void setLvl(int lvl) {
+    public void setEquipped(boolean equipped) {
 
-        this.lvl = lvl;
+        this.equipped = equipped;
     }
 }

@@ -16,9 +16,6 @@ public class Class {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "class_")
-    private List<Character_class> character_classes;
-
     public Class() {
     }
 

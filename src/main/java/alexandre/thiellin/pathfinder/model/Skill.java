@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "items")
-public class Item {
+@Table(name = "skills")
+public class Skill {
 
     @Id
     private long id;
@@ -16,24 +16,24 @@ public class Item {
     private String name;
 
     @Column(nullable = false)
-    private int price;
+    private boolean require_training;
 
     @Column(nullable = false)
-    private int weight;
+    private String attribute;
 
     @Column(nullable = false)
     private String description;
 
-    public Item() {
+    public Skill() {
 
     }
 
-    public Item(long id, String name, int price, int weight, String description) {
+    public Skill(long id, String name, boolean require_training, String attribute, String description) {
 
         this.id = id;
         this.name = name;
-        this.price = price;
-        this.weight = weight;
+        this.require_training = require_training;
+        this.attribute = attribute;
         this.description = description;
     }
 
@@ -57,24 +57,24 @@ public class Item {
         this.name = name;
     }
 
-    public int getPrice() {
+    public boolean isRequire_training() {
 
-        return price;
+        return require_training;
     }
 
-    public void setPrice(int price) {
+    public void setRequire_training(boolean require_training) {
 
-        this.price = price;
+        this.require_training = require_training;
     }
 
-    public int getWeight() {
+    public String getAttribute() {
 
-        return weight;
+        return attribute;
     }
 
-    public void setWeight(int weight) {
+    public void setAttribute(String attribute) {
 
-        this.weight = weight;
+        this.attribute = attribute;
     }
 
     public String getDescription() {
