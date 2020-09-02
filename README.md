@@ -10,7 +10,7 @@ Les données sont stockées sur une base de données MySQL dont vous trouverez l
 - [Pour commencer](#pour-commencer)
     - [Création de la base de données](#création-de-la-base-de-données)
         - [Script de création de la base](#script-de-création-de-la-base)
-        - [Script d'insertion des données](#script-d'insertion-des-données)
+        - [Script d'insertion des données](#script-dinsertion-des-données)
         - [Schéma de la base de données](#schéma-de-la-base-de-données)
     - [Utiliser l'api](#utiliser-lapi)
 - [Documentation](#documentation)
