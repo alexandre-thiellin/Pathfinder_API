@@ -76,12 +76,26 @@ public class PathfinderController {
         return raceRepository.findAll();
     }
 
+    @GetMapping(path = "/races/id/{id}")
+    public ResponseEntity<Race> getRaceById(@PathVariable long id) throws ResourceNotFoundException {
+
+        Race race = raceRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is no resources with id : "+id));
+        return ResponseEntity.ok().body(race);
+    }
+
     // --------------- CLASSES -----------------
 
     @GetMapping(path = "/classes")
     public List<Class> getClasses() {
 
         return classRepository.findAll();
+    }
+
+    @GetMapping(path = "/classes/id/{id}")
+    public ResponseEntity<Class> getClassById(@PathVariable long id) throws ResourceNotFoundException {
+
+        Class class_ = classRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is no resources with id : "+id));
+        return ResponseEntity.ok().body(class_);
     }
 
     // --------------- SKILLS -----------------
@@ -92,12 +106,26 @@ public class PathfinderController {
         return skillRepository.findAll();
     }
 
+    @GetMapping(path = "/skills/id/{id}")
+    public ResponseEntity<Skill> getSkillById(@PathVariable long id) throws ResourceNotFoundException {
+
+        Skill skill = skillRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is no resources with id : "+id));
+        return ResponseEntity.ok().body(skill);
+    }
+
     // --------------- TALENTS -----------------
 
     @GetMapping(path = "/talents")
     public List<Talent> getTalents() {
 
         return talentRepository.findAll();
+    }
+
+    @GetMapping(path = "/talents/id/{id}")
+    public ResponseEntity<Talent> getTalentById(@PathVariable long id) throws ResourceNotFoundException {
+
+        Talent talent = talentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is no resources with id : "+id));
+        return ResponseEntity.ok().body(talent);
     }
 
     // --------------- SPELLS -----------------
@@ -108,12 +136,26 @@ public class PathfinderController {
         return spellRepository.findAll();
     }
 
+    @GetMapping(path = "/spells/id/{id}")
+    public ResponseEntity<Spell> getSpellById(@PathVariable long id) throws ResourceNotFoundException {
+
+        Spell spell = spellRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is no resources with id : "+id));
+        return ResponseEntity.ok().body(spell);
+    }
+
     // --------------- WEAPONS -----------------
 
     @GetMapping(path = "/weapons")
     public List<Weapon> getWeapons() {
 
         return weaponRepository.findAll();
+    }
+
+    @GetMapping(path = "/weapons/id/{id}")
+    public ResponseEntity<Weapon> getWeaponById(@PathVariable long id) throws ResourceNotFoundException {
+
+        Weapon weapon = weaponRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is no resources with id : "+id));
+        return ResponseEntity.ok().body(weapon);
     }
 
     // --------------- ARMORS -----------------
@@ -124,11 +166,25 @@ public class PathfinderController {
         return armorRepository.findAll();
     }
 
+    @GetMapping(path = "/armors/id/{id}")
+    public ResponseEntity<Armor> getArmorById(@PathVariable long id) throws ResourceNotFoundException {
+
+        Armor armor = armorRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is no resources with id : "+id));
+        return ResponseEntity.ok().body(armor);
+    }
+
     // --------------- ITEMS -----------------
 
     @GetMapping(path = "/items")
     public List<Item> getItems() {
 
         return itemRepository.findAll();
+    }
+
+    @GetMapping(path = "/items/id/{id}")
+    public ResponseEntity<Item> getItemById(@PathVariable long id) throws ResourceNotFoundException {
+
+        Item item = itemRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is no resources with id : "+id));
+        return ResponseEntity.ok().body(item);
     }
 }
