@@ -73,6 +73,10 @@ Toutes les routes ont pour préfixe : http://localhost:8889/pathfinder
 Retourne la liste de tous les personnages.
 
 
+    GET /characters/overview
+Retourne une liste contenant des paires d'id et de nom des personnages.
+
+
     GET /characters/id/{id}
 Id est un nombre entier.
 

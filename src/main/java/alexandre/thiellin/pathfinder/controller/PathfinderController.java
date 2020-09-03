@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PathfinderController {
@@ -52,6 +54,14 @@ public class PathfinderController {
     public List<Character> getCharacters() {
 
         return characterRepository.findAll();
+    }
+
+    @GetMapping(path = "/characters/overview")
+    public Map<Long, String> getCharactersOverview(){
+        List<Character> characters = characterRepository.findAll();
+        Map<Long, String> overview = new HashMap<>();
+        characters.stream().forEach(c -> overview.put(c.getId(), c.getName()));
+        return overview;
     }
 
     @GetMapping(path = "/characters/id/{id}")
