@@ -3,7 +3,7 @@ package alexandre.thiellin.pathfinder.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "character_classes")
+@Table(name = "characters_classes")
 public class Character_class {
 
     @Id

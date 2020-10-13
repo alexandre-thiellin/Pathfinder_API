@@ -84,21 +84,21 @@ CREATE TABLE `items` (
   `description` varchar(255) NOT NULL
 );
 
-CREATE TABLE `inventory_weapons` (
+CREATE TABLE `character_weapons` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `character_id` int NOT NULL,
   `weapon_id` int NOT NULL,
   `equipped` boolean NOT NULL
 );
 
-CREATE TABLE `inventory_armors` (
+CREATE TABLE `character_armors` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `character_id` int NOT NULL,
   `armor_id` int NOT NULL,
   `equipped` boolean NOT NULL
 );
 
-CREATE TABLE `inventory_items` (
+CREATE TABLE `character_items` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `character_id` int NOT NULL,
   `item_id` int NOT NULL,
@@ -163,17 +163,17 @@ ALTER TABLE `character_classes` ADD FOREIGN KEY (`character_id`) REFERENCES `cha
 
 ALTER TABLE `character_classes` ADD FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`);
 
-ALTER TABLE `inventory_weapons` ADD FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`);
+ALTER TABLE `character_weapons` ADD FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`);
 
-ALTER TABLE `inventory_weapons` ADD FOREIGN KEY (`weapon_id`) REFERENCES `weapons` (`id`);
+ALTER TABLE `character_weapons` ADD FOREIGN KEY (`weapon_id`) REFERENCES `weapons` (`id`);
 
-ALTER TABLE `inventory_armors` ADD FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`);
+ALTER TABLE `character_armors` ADD FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`);
 
-ALTER TABLE `inventory_armors` ADD FOREIGN KEY (`armor_id`) REFERENCES `armors` (`id`);
+ALTER TABLE `character_armors` ADD FOREIGN KEY (`armor_id`) REFERENCES `armors` (`id`);
 
-ALTER TABLE `inventory_items` ADD FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`);
+ALTER TABLE `character_items` ADD FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`);
 
-ALTER TABLE `inventory_items` ADD FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
+ALTER TABLE `character_items` ADD FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
 
 ALTER TABLE `character_talents` ADD FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`);
 

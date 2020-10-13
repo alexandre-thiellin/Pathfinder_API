@@ -1,12 +1,10 @@
 package alexandre.thiellin.pathfinder.model;
 
-import org.springframework.jmx.export.annotation.ManagedAttribute;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "inventory_items")
-public class Inventory_Item {
+@Table(name = "characters_weapons")
+public class Character_weapon {
 
     @Id
     private long id;
@@ -16,21 +14,21 @@ public class Inventory_Item {
     private Character character;
 
     @ManyToOne
-    @JoinColumn(name = "item_id", nullable = false)
-    private Item item;
+    @JoinColumn(name = "weapon_id", nullable = false)
+    private Weapon weapon;
 
     @Column(nullable = false)
     private boolean equipped;
 
-    public Inventory_Item() {
+    public Character_weapon() {
 
     }
 
-    public Inventory_Item(long id, Character character, Item item, boolean equipped) {
+    public Character_weapon(long id, Character character, Weapon weapon, boolean equipped) {
 
         this.id = id;
         this.character = character;
-        this.item = item;
+        this.weapon = weapon;
         this.equipped = equipped;
     }
 
@@ -54,14 +52,14 @@ public class Inventory_Item {
         this.character = character;
     }
 
-    public Item getItem() {
+    public Weapon getWeapon() {
 
-        return item;
+        return weapon;
     }
 
-    public void setItem(Item item) {
+    public void setWeapon(Weapon weapon) {
 
-        this.item = item;
+        this.weapon = weapon;
     }
 
     public boolean isEquipped() {

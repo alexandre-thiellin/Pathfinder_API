@@ -81,13 +81,13 @@ public class Character {
     private List<Character_spell> character_spells;
 
     @OneToMany(mappedBy = "character")
-    private List<Inventory_weapon> inventory_weapons;
+    private List<Character_weapon> character_weapons;
 
     @OneToMany(mappedBy = "character")
-    private List<Inventory_armor> inventory_armors;
+    private List<Character_armor> character_armors;
 
     @OneToMany(mappedBy = "character")
-    private List<Inventory_Item> inventory_items;
+    private List<Character_Item> character_items;
 
     public Character(){}
 
@@ -355,33 +355,33 @@ public class Character {
         this.character_spells = character_spells;
     }
 
-    public List<Inventory_weapon> getInventory_weapons() {
+    public List<Character_weapon> getInventory_weapons() {
 
-        return inventory_weapons;
+        return character_weapons;
     }
 
-    public void setInventory_weapons(List<Inventory_weapon> inventory_weapons) {
+    public void setInventory_weapons(List<Character_weapon> character_weapons) {
 
-        this.inventory_weapons = inventory_weapons;
+        this.character_weapons = character_weapons;
     }
 
-    public List<Inventory_armor> getInventory_armors() {
+    public List<Character_armor> getInventory_armors() {
 
-        return inventory_armors;
+        return character_armors;
     }
 
-    public void setInventory_armors(List<Inventory_armor> inventory_armors) {
+    public void setInventory_armors(List<Character_armor> character_armors) {
 
-        this.inventory_armors = inventory_armors;
+        this.character_armors = character_armors;
     }
 
-    public List<Inventory_Item> getInventory_items() {
+    public List<Character_Item> getInventory_items() {
 
-        return inventory_items;
+        return character_items;
     }
 
-    public void setInventory_items(List<Inventory_Item> inventory_items) {
+    public void setInventory_items(List<Character_Item> character_items) {
 
-        this.inventory_items = inventory_items;
+        this.character_items = character_items;
     }
 }

@@ -4,7 +4,6 @@ import alexandre.thiellin.pathfinder.model.*;
 import alexandre.thiellin.pathfinder.model.Character;
 import alexandre.thiellin.pathfinder.model.Class;
 import alexandre.thiellin.pathfinder.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,34 +17,34 @@ import java.util.Map;
 @RestController
 public class PathfinderController {
 
-    @Autowired
-    private CharacterRepository characterRepository;
+    private final CharacterRepository characterRepository;
 
-    @Autowired
-    private RaceRepository raceRepository;
+    private final RaceRepository raceRepository;
 
-    @Autowired
-    private ClassRepository classRepository;
+    private final ClassRepository classRepository;
 
-    @Autowired
-    private SkillRepository skillRepository;
+    private final SkillRepository skillRepository;
 
-    @Autowired
-    private TalentRepository talentRepository;
+    private final TalentRepository talentRepository;
 
-    @Autowired
-    private SpellRepository spellRepository;
+    private final SpellRepository spellRepository;
 
-    @Autowired
-    private WeaponRepository weaponRepository;
+    private final WeaponRepository weaponRepository;
 
-    @Autowired
-    private ArmorRepository armorRepository;
+    private final ArmorRepository armorRepository;
 
-    @Autowired
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
-    public PathfinderController() {
+    public PathfinderController(CharacterRepository characterRepository, RaceRepository raceRepository, ClassRepository classRepository, SkillRepository skillRepository, TalentRepository talentRepository, SpellRepository spellRepository, WeaponRepository weaponRepository, ArmorRepository armorRepository, ItemRepository itemRepository) {
+        this.characterRepository = characterRepository;
+        this.raceRepository = raceRepository;
+        this.classRepository = classRepository;
+        this.skillRepository = skillRepository;
+        this.talentRepository = talentRepository;
+        this.spellRepository = spellRepository;
+        this.weaponRepository = weaponRepository;
+        this.armorRepository = armorRepository;
+        this.itemRepository = itemRepository;
     }
 
     // --------------- CHARACTERS -----------------
@@ -60,7 +59,7 @@ public class PathfinderController {
     public Map<Long, String> getCharactersOverview(){
         List<Character> characters = characterRepository.findAll();
         Map<Long, String> overview = new HashMap<>();
-        characters.stream().forEach(c -> overview.put(c.getId(), c.getName()));
+        characters.forEach(c -> overview.put(c.getId(), c.getName()));
         return overview;
     }
 
