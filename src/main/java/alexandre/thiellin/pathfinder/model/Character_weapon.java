@@ -18,6 +18,9 @@ public class Character_weapon {
     private Weapon weapon;
 
     @Column(nullable = false)
+    private int quantity;
+
+    @Column(nullable = false)
     private boolean equipped;
 
     public Character_weapon() {
@@ -42,11 +45,6 @@ public class Character_weapon {
         this.id = id;
     }
 
-//    public Character getCharacter() {
-//
-//        return character;
-//    }
-
     public void setCharacter(Character character) {
 
         this.character = character;
@@ -60,6 +58,14 @@ public class Character_weapon {
     public void setWeapon(Weapon weapon) {
 
         this.weapon = weapon;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public boolean isEquipped() {

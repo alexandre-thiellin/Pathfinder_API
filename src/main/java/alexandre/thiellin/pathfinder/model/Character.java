@@ -69,25 +69,25 @@ public class Character {
     private int exp;
 
     @OneToMany(mappedBy = "character")
-    private List<Character_class> character_classes;
+    private List<Character_class> characters_classes;
 
     @OneToMany(mappedBy = "character")
-    private List<Character_skill> character_skills;
+    private List<Character_skill> characters_skills;
 
     @OneToMany(mappedBy = "character")
-    private List<Character_talent> character_talents;
+    private List<Character_talent> characters_talents;
 
     @OneToMany(mappedBy = "character")
-    private List<Character_spell> character_spells;
+    private List<Character_spell> characters_spells;
 
     @OneToMany(mappedBy = "character")
-    private List<Character_weapon> character_weapons;
+    private List<Character_weapon> characters_weapons;
 
     @OneToMany(mappedBy = "character")
-    private List<Character_armor> character_armors;
+    private List<Character_armor> characters_armors;
 
     @OneToMany(mappedBy = "character")
-    private List<Character_Item> character_items;
+    private List<Character_Item> characters_items;
 
     public Character(){}
 
@@ -315,73 +315,67 @@ public class Character {
         this.exp = exp;
     }
 
-    public List<Character_class> getCharacter_classes() {
+    public List<Character_class> getCharacters_classes() {
 
-        return character_classes;
+        return characters_classes;
     }
 
-    public void setCharacter_classes(List<Character_class> character_classes) {
+    public void setCharacters_classes(List<Character_class> characters_classes) {
 
-        this.character_classes = character_classes;
+        this.characters_classes = characters_classes;
     }
 
-    public List<Character_skill> getCharacter_skills() {
+    public List<Character_skill> getCharacters_skills() {
 
-        return character_skills;
+        return characters_skills;
     }
 
-    public void setCharacter_skills(List<Character_skill> character_skills) {
+    public void setCharacters_skills(List<Character_skill> characters_skills) {
 
-        this.character_skills = character_skills;
+        this.characters_skills = characters_skills;
     }
 
-    public List<Character_talent> getCharacter_talents() {
+    public List<Character_talent> getCharacters_talents() {
 
-        return character_talents;
+        return characters_talents;
     }
 
-    public void setCharacter_talents(List<Character_talent> character_talents) {
+    public void setCharacters_talents(List<Character_talent> characters_talents) {
 
-        this.character_talents = character_talents;
+        this.characters_talents = characters_talents;
     }
 
-    public List<Character_spell> getCharacter_spells() {
+    public List<Character_spell> getCharacters_spells() {
 
-        return character_spells;
+        return characters_spells;
     }
 
-    public void setCharacter_spells(List<Character_spell> character_spells) {
+    public void setCharacters_spells(List<Character_spell> characters_spells) {
 
-        this.character_spells = character_spells;
+        this.characters_spells = characters_spells;
     }
 
-    public List<Character_weapon> getInventory_weapons() {
-
-        return character_weapons;
+    public List<Character_weapon> getCharacters_weapons() {
+        return characters_weapons;
     }
 
-    public void setInventory_weapons(List<Character_weapon> character_weapons) {
-
-        this.character_weapons = character_weapons;
+    public void setCharacters_weapons(List<Character_weapon> characters_weapons) {
+        this.characters_weapons = characters_weapons;
     }
 
-    public List<Character_armor> getInventory_armors() {
-
-        return character_armors;
+    public List<Character_armor> getCharacters_armors() {
+        return characters_armors;
     }
 
-    public void setInventory_armors(List<Character_armor> character_armors) {
-
-        this.character_armors = character_armors;
+    public void setCharacters_armors(List<Character_armor> characters_armors) {
+        this.characters_armors = characters_armors;
     }
 
-    public List<Character_Item> getInventory_items() {
-
-        return character_items;
+    public List<Character_Item> getCharacters_items() {
+        return characters_items;
     }
 
-    public void setInventory_items(List<Character_Item> character_items) {
-
-        this.character_items = character_items;
+    public void setCharacters_items(List<Character_Item> characters_items) {
+        this.characters_items = characters_items;
     }
 }

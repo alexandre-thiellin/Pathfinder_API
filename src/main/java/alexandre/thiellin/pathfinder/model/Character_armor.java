@@ -18,6 +18,9 @@ public class Character_armor {
     private Armor armor;
 
     @Column(nullable = false)
+    private int quantity;
+
+    @Column(nullable = false)
     private boolean equipped;
 
     public Character_armor() {
@@ -55,6 +58,14 @@ public class Character_armor {
     public void setArmor(Armor armor) {
 
         this.armor = armor;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public boolean isEquipped() {

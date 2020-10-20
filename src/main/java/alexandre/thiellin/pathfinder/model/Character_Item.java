@@ -20,6 +20,9 @@ public class Character_Item {
     private Item item;
 
     @Column(nullable = false)
+    private int quantity;
+
+    @Column(nullable = false)
     private boolean equipped;
 
     public Character_Item() {
@@ -44,11 +47,6 @@ public class Character_Item {
         this.id = id;
     }
 
-//    public Character getCharacter() {
-//
-//        return character;
-//    }
-
     public void setCharacter(Character character) {
 
         this.character = character;
@@ -62,6 +60,14 @@ public class Character_Item {
     public void setItem(Item item) {
 
         this.item = item;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public boolean isEquipped() {
