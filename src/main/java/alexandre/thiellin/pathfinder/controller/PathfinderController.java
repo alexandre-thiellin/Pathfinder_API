@@ -6,11 +6,9 @@ import alexandre.thiellin.pathfinder.model.Class;
 import alexandre.thiellin.pathfinder.repository.*;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,21 +18,13 @@ import java.util.Map;
 public class PathfinderController {
 
     private final CharacterRepository characterRepository;
-
     private final RaceRepository raceRepository;
-
     private final ClassRepository classRepository;
-
     private final SkillRepository skillRepository;
-
     private final TalentRepository talentRepository;
-
     private final SpellRepository spellRepository;
-
     private final WeaponRepository weaponRepository;
-
     private final ArmorRepository armorRepository;
-
     private final ItemRepository itemRepository;
 
     public PathfinderController(CharacterRepository characterRepository, RaceRepository raceRepository, ClassRepository classRepository, SkillRepository skillRepository, TalentRepository talentRepository, SpellRepository spellRepository, WeaponRepository weaponRepository, ArmorRepository armorRepository, ItemRepository itemRepository) {
@@ -77,6 +67,22 @@ public class PathfinderController {
 
         Character character = characterRepository.findByName(name).orElseThrow(() -> new ResourceNotFoundException("There is no resources with name : "+name));
         return ResponseEntity.ok().body(character);
+    }
+
+    @PostMapping(path = "/characters")
+    public Character postCharacter(@Valid @RequestBody Character character) {
+
+        character.getCharacters_classes().forEach(character_class -> character_class.setCharacter(character));
+        character.getCharacters_skills().forEach(character_skill -> character_skill.setCharacter(character));
+        character.getCharacters_talents().forEach(character_talent -> character_talent.setCharacter(character));
+        character.getCharacters_spells().forEach(character_spell -> character_spell.setCharacter(character));
+        character.getCharacters_weapons().forEach(character_weapon -> character_weapon.setCharacter(character));
+        character.getCharacters_armors().forEach(character_armor -> character_armor.setCharacter(character));
+        character.getCharacters_items().forEach(character_item -> character_item.setCharacter(character));
+
+        characterRepository.save(character);
+
+        return character;
     }
 
     // --------------- RACES -----------------

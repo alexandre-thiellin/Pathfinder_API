@@ -27,11 +27,11 @@ public class Character_weapon {
 
     }
 
-    public Character_weapon(long id, Character character, Weapon weapon, boolean equipped) {
-
+    public Character_weapon(long id, Character character, Weapon weapon, int quantity, boolean equipped) {
         this.id = id;
         this.character = character;
         this.weapon = weapon;
+        this.quantity = quantity;
         this.equipped = equipped;
     }
 

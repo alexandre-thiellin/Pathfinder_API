@@ -20,12 +20,10 @@ public class Character_skill {
     @Column(nullable = false)
     private boolean class_skill;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "`rank`")
     private int rank;
 
-    public Character_skill() {
-
-    }
+    public Character_skill() {}
 
     public Character_skill(long id, Character character, Skill skill, boolean class_skill, int rank) {
 

@@ -23,15 +23,13 @@ public class Character_armor {
     @Column(nullable = false)
     private boolean equipped;
 
-    public Character_armor() {
+    public Character_armor() {}
 
-    }
-
-    public Character_armor(long id, Character character, Armor armor, boolean equipped) {
-
+    public Character_armor(long id, Character character, Armor armor, int quantity, boolean equipped) {
         this.id = id;
         this.character = character;
         this.armor = armor;
+        this.quantity = quantity;
         this.equipped = equipped;
     }
 

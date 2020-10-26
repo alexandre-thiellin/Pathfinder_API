@@ -68,25 +68,25 @@ public class Character {
     @Column(nullable = false)
     private int exp;
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
     private List<Character_class> characters_classes;
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
     private List<Character_skill> characters_skills;
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
     private List<Character_talent> characters_talents;
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
     private List<Character_spell> characters_spells;
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
     private List<Character_weapon> characters_weapons;
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
     private List<Character_armor> characters_armors;
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL)
     private List<Character_Item> characters_items;
 
     public Character(){}

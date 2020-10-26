@@ -29,11 +29,11 @@ public class Character_Item {
 
     }
 
-    public Character_Item(long id, Character character, Item item, boolean equipped) {
-
+    public Character_Item(long id, Character character, Item item, int quantity, boolean equipped) {
         this.id = id;
         this.character = character;
         this.item = item;
+        this.quantity = quantity;
         this.equipped = equipped;
     }
 

@@ -87,6 +87,11 @@ Retourne le personnage avec l'id correspondant.
 Name est une chaine de caractères.
 
 Retourne le personnage avec le nom correspondant.
+
+    POST /characters
+Le body de la requête doit contenir un personnage sous forme JSON.
+
+Retourne le personnage créer si la requête réussie sinon renvoi une erreur.
 #### Races
 
 
