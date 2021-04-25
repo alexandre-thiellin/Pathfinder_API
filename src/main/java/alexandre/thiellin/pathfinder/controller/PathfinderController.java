@@ -245,15 +245,8 @@ public class PathfinderController {
     public void setIdForCharacter(Character character) {
 
         List<Character> characters = characterRepository.findAll();
-        long maxCharacterId = characters.stream().reduce(
-                (subtotal, element) -> {
-                    if (element.getId() > subtotal.getId()) {
-                        return element;
-                    } else {
-                        return subtotal;
-                    }
-                }
-        ).get().getId() + 1;
+
+        long maxCharacterId = characters.stream().mapToLong(Character::getId).max().orElse(0) + 1;
 
         character.setId(maxCharacterId);
     }
@@ -263,15 +256,8 @@ public class PathfinderController {
         character.getCharacters_armors().forEach(character_armor -> character_armor.setCharacter(character));
 
         List<Character_armor> armors = characterArmorRepository.findAll();
-        long maxArmorsId = armors.stream().reduce(
-                (subtotal, element) -> {
-                    if (element.getId() > subtotal.getId()) {
-                        return element;
-                    } else {
-                        return subtotal;
-                    }
-                }
-        ).get().getId() + 1;
+
+        long maxArmorsId = armors.stream().mapToLong(Character_armor::getId).max().orElse(0) + 1;
 
         for (Character_armor ca : character.getCharacters_armors()) {
             ca.setId(maxArmorsId);
@@ -284,15 +270,8 @@ public class PathfinderController {
         character.getCharacters_classes().forEach(character_class -> character_class.setCharacter(character));
 
         List<Character_class> classes = characterClassRepository.findAll();
-        long maxClassesId = classes.stream().reduce(
-                (subtotal, element) -> {
-                    if (element.getId() > subtotal.getId()) {
-                        return element;
-                    } else {
-                        return subtotal;
-                    }
-                }
-        ).get().getId() + 1;
+
+        long maxClassesId = classes.stream().mapToLong(Character_class::getId).max().orElse(0) + 1;
 
         for (Character_class cc : character.getCharacters_classes()) {
             cc.setId(maxClassesId);
@@ -305,15 +284,8 @@ public class PathfinderController {
         character.getCharacters_items().forEach(character_item -> character_item.setCharacter(character));
 
         List<Character_Item> items = characterItemRepository.findAll();
-        long maxItemsId = items.stream().reduce(
-                (subtotal, element) -> {
-                    if (element.getId() > subtotal.getId()) {
-                        return element;
-                    } else {
-                        return subtotal;
-                    }
-                }
-        ).get().getId() + 1;
+
+        long maxItemsId = items.stream().mapToLong(Character_Item::getId).max().orElse(0) + 1;
 
         for (Character_Item ci : character.getCharacters_items()) {
             ci.setId(maxItemsId);
@@ -326,15 +298,8 @@ public class PathfinderController {
         character.getCharacters_skills().forEach(character_skill -> character_skill.setCharacter(character));
 
         List<Character_skill> skills = characterSkillRepository.findAll();
-        long maxSkillsId = skills.stream().reduce(
-                (subtotal, element) -> {
-                    if (element.getId() > subtotal.getId()) {
-                        return element;
-                    } else {
-                        return subtotal;
-                    }
-                }
-        ).get().getId() + 1;
+
+        long maxSkillsId = skills.stream().mapToLong(Character_skill::getId).max().orElse(0) + 1;
 
         for (Character_skill cs : character.getCharacters_skills()) {
             cs.setId(maxSkillsId);
@@ -347,15 +312,8 @@ public class PathfinderController {
         character.getCharacters_spells().forEach(character_spell -> character_spell.setCharacter(character));
 
         List<Character_spell> spells = characterSpellRepository.findAll();
-        long maxSpellsId = spells.stream().reduce(
-                (subtotal, element) -> {
-                    if (element.getId() > subtotal.getId()) {
-                        return element;
-                    } else {
-                        return subtotal;
-                    }
-                }
-        ).get().getId() + 1;
+
+        long maxSpellsId = spells.stream().mapToLong(Character_spell::getId).max().orElse(0) + 1;
 
         for (Character_spell cs : character.getCharacters_spells()) {
             cs.setId(maxSpellsId);
@@ -368,15 +326,8 @@ public class PathfinderController {
         character.getCharacters_talents().forEach(character_talent -> character_talent.setCharacter(character));
 
         List<Character_talent> talents = characterTalentRepository.findAll();
-        long maxTalentsId = talents.stream().reduce(
-                (subtotal, element) -> {
-                    if (element.getId() > subtotal.getId()) {
-                        return element;
-                    } else {
-                        return subtotal;
-                    }
-                }
-        ).get().getId() + 1;
+
+        long maxTalentsId = talents.stream().mapToLong(Character_talent::getId).max().orElse(0) + 1;
 
         for (Character_talent ct : character.getCharacters_talents()) {
             ct.setId(maxTalentsId);
@@ -389,15 +340,8 @@ public class PathfinderController {
         character.getCharacters_weapons().forEach(character_weapon -> character_weapon.setCharacter(character));
 
         List<Character_weapon> weapons = characterWeaponRepository.findAll();
-        long maxWeaponsId = weapons.stream().reduce(
-                (subtotal, element) -> {
-                    if (element.getId() > subtotal.getId()) {
-                        return element;
-                    } else {
-                        return subtotal;
-                    }
-                }
-        ).get().getId() + 1;
+
+        long maxWeaponsId = weapons.stream().mapToLong(Character_weapon::getId).max().orElse(0) + 1;
 
         for (Character_weapon cw : character.getCharacters_weapons()) {
             cw.setId(maxWeaponsId);
