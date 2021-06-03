@@ -3,7 +3,7 @@ package alexandre.thiellin.pathfinder.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "character_skills")
+@Table(name = "characters_skills")
 public class Character_skill {
 
     @Id
@@ -20,12 +20,10 @@ public class Character_skill {
     @Column(nullable = false)
     private boolean class_skill;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "`rank`")
     private int rank;
 
-    public Character_skill() {
-
-    }
+    public Character_skill() {}
 
     public Character_skill(long id, Character character, Skill skill, boolean class_skill, int rank) {
 

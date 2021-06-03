@@ -3,8 +3,8 @@ package alexandre.thiellin.pathfinder.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "inventory_weapons")
-public class Inventory_weapon {
+@Table(name = "characters_weapons")
+public class Character_weapon {
 
     @Id
     private long id;
@@ -18,17 +18,20 @@ public class Inventory_weapon {
     private Weapon weapon;
 
     @Column(nullable = false)
+    private int quantity;
+
+    @Column(nullable = false)
     private boolean equipped;
 
-    public Inventory_weapon() {
+    public Character_weapon() {
 
     }
 
-    public Inventory_weapon(long id, Character character, Weapon weapon, boolean equipped) {
-
+    public Character_weapon(long id, Character character, Weapon weapon, int quantity, boolean equipped) {
         this.id = id;
         this.character = character;
         this.weapon = weapon;
+        this.quantity = quantity;
         this.equipped = equipped;
     }
 
@@ -41,11 +44,6 @@ public class Inventory_weapon {
 
         this.id = id;
     }
-
-//    public Character getCharacter() {
-//
-//        return character;
-//    }
 
     public void setCharacter(Character character) {
 
@@ -60,6 +58,14 @@ public class Inventory_weapon {
     public void setWeapon(Weapon weapon) {
 
         this.weapon = weapon;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public boolean isEquipped() {

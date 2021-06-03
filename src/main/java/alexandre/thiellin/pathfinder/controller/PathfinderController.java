@@ -1,51 +1,71 @@
 package alexandre.thiellin.pathfinder.controller;
 
-import alexandre.thiellin.pathfinder.model.*;
 import alexandre.thiellin.pathfinder.model.Character;
 import alexandre.thiellin.pathfinder.model.Class;
+import alexandre.thiellin.pathfinder.model.*;
 import alexandre.thiellin.pathfinder.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 public class PathfinderController {
 
-    @Autowired
-    private CharacterRepository characterRepository;
+    private final CharacterRepository characterRepository;
+    private final RaceRepository raceRepository;
+    private final ClassRepository classRepository;
+    private final SkillRepository skillRepository;
+    private final TalentRepository talentRepository;
+    private final SpellRepository spellRepository;
+    private final WeaponRepository weaponRepository;
+    private final ArmorRepository armorRepository;
+    private final ItemRepository itemRepository;
+    private final CharacterArmorRepository characterArmorRepository;
+    private final CharacterClassRepository characterClassRepository;
+    private final CharacterItemRepository characterItemRepository;
+    private final CharacterSkillRepository characterSkillRepository;
+    private final CharacterSpellRepository characterSpellRepository;
+    private final CharacterTalentRepository characterTalentRepository;
+    private final CharacterWeaponRepository characterWeaponRepository;
 
-    @Autowired
-    private RaceRepository raceRepository;
-
-    @Autowired
-    private ClassRepository classRepository;
-
-    @Autowired
-    private SkillRepository skillRepository;
-
-    @Autowired
-    private TalentRepository talentRepository;
-
-    @Autowired
-    private SpellRepository spellRepository;
-
-    @Autowired
-    private WeaponRepository weaponRepository;
-
-    @Autowired
-    private ArmorRepository armorRepository;
-
-    @Autowired
-    private ItemRepository itemRepository;
-
-    public PathfinderController() {
+    public PathfinderController(CharacterRepository characterRepository,
+                                RaceRepository raceRepository,
+                                ClassRepository classRepository,
+                                SkillRepository skillRepository,
+                                TalentRepository talentRepository,
+                                SpellRepository spellRepository,
+                                WeaponRepository weaponRepository,
+                                ArmorRepository armorRepository,
+                                ItemRepository itemRepository,
+                                CharacterArmorRepository characterArmorRepository,
+                                CharacterClassRepository characterClassRepository,
+                                CharacterItemRepository characterItemRepository,
+                                CharacterSkillRepository characterSkillRepository,
+                                CharacterSpellRepository characterSpellRepository,
+                                CharacterTalentRepository characterTalentRepository,
+                                CharacterWeaponRepository characterWeaponRepository) {
+        this.characterRepository = characterRepository;
+        this.raceRepository = raceRepository;
+        this.classRepository = classRepository;
+        this.skillRepository = skillRepository;
+        this.talentRepository = talentRepository;
+        this.spellRepository = spellRepository;
+        this.weaponRepository = weaponRepository;
+        this.armorRepository = armorRepository;
+        this.itemRepository = itemRepository;
+        this.characterArmorRepository = characterArmorRepository;
+        this.characterClassRepository = characterClassRepository;
+        this.characterItemRepository = characterItemRepository;
+        this.characterSkillRepository = characterSkillRepository;
+        this.characterSpellRepository = characterSpellRepository;
+        this.characterTalentRepository = characterTalentRepository;
+        this.characterWeaponRepository = characterWeaponRepository;
     }
 
     // --------------- CHARACTERS -----------------
@@ -60,7 +80,7 @@ public class PathfinderController {
     public Map<Long, String> getCharactersOverview(){
         List<Character> characters = characterRepository.findAll();
         Map<Long, String> overview = new HashMap<>();
-        characters.stream().forEach(c -> overview.put(c.getId(), c.getName()));
+        characters.forEach(c -> overview.put(c.getId(), c.getName()));
         return overview;
     }
 
@@ -76,6 +96,16 @@ public class PathfinderController {
 
         Character character = characterRepository.findByName(name).orElseThrow(() -> new ResourceNotFoundException("There is no resources with name : "+name));
         return ResponseEntity.ok().body(character);
+    }
+
+    @PostMapping(path = "/characters")
+    public Character postCharacter(@Valid @RequestBody Character character) {
+
+        setCharacterAndIds(character);
+
+        characterRepository.save(character);
+
+        return character;
     }
 
     // --------------- RACES -----------------
@@ -196,5 +226,126 @@ public class PathfinderController {
 
         Item item = itemRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("There is no resources with id : "+id));
         return ResponseEntity.ok().body(item);
+    }
+
+    // --------------- UTILITIES -----------------
+
+    public void setCharacterAndIds(Character character) {
+
+        setIdForCharacter(character);
+        setCharacterAndIdForArmors(character);
+        setCharacterAndIdForClasses(character);
+        setCharacterAndIdForItems(character);
+        setCharacterAndIdForSkills(character);
+        setCharacterAndIdForSpells(character);
+        setCharacterAndIdForTalents(character);
+        setCharacterAndIdForWeapons(character);
+    }
+
+    public void setIdForCharacter(Character character) {
+
+        List<Character> characters = characterRepository.findAll();
+
+        long maxCharacterId = characters.stream().mapToLong(Character::getId).max().orElse(0) + 1;
+
+        character.setId(maxCharacterId);
+    }
+
+    public void setCharacterAndIdForArmors(Character character) {
+
+        character.getCharacters_armors().forEach(character_armor -> character_armor.setCharacter(character));
+
+        List<Character_armor> armors = characterArmorRepository.findAll();
+
+        long maxArmorsId = armors.stream().mapToLong(Character_armor::getId).max().orElse(0) + 1;
+
+        for (Character_armor ca : character.getCharacters_armors()) {
+            ca.setId(maxArmorsId);
+            maxArmorsId++;
+        }
+    }
+
+    public void setCharacterAndIdForClasses(Character character) {
+
+        character.getCharacters_classes().forEach(character_class -> character_class.setCharacter(character));
+
+        List<Character_class> classes = characterClassRepository.findAll();
+
+        long maxClassesId = classes.stream().mapToLong(Character_class::getId).max().orElse(0) + 1;
+
+        for (Character_class cc : character.getCharacters_classes()) {
+            cc.setId(maxClassesId);
+            maxClassesId++;
+        }
+    }
+
+    public void setCharacterAndIdForItems(Character character) {
+
+        character.getCharacters_items().forEach(character_item -> character_item.setCharacter(character));
+
+        List<Character_Item> items = characterItemRepository.findAll();
+
+        long maxItemsId = items.stream().mapToLong(Character_Item::getId).max().orElse(0) + 1;
+
+        for (Character_Item ci : character.getCharacters_items()) {
+            ci.setId(maxItemsId);
+            maxItemsId++;
+        }
+    }
+
+    public void setCharacterAndIdForSkills(Character character) {
+
+        character.getCharacters_skills().forEach(character_skill -> character_skill.setCharacter(character));
+
+        List<Character_skill> skills = characterSkillRepository.findAll();
+
+        long maxSkillsId = skills.stream().mapToLong(Character_skill::getId).max().orElse(0) + 1;
+
+        for (Character_skill cs : character.getCharacters_skills()) {
+            cs.setId(maxSkillsId);
+            maxSkillsId++;
+        }
+    }
+
+    public void setCharacterAndIdForSpells(Character character) {
+
+        character.getCharacters_spells().forEach(character_spell -> character_spell.setCharacter(character));
+
+        List<Character_spell> spells = characterSpellRepository.findAll();
+
+        long maxSpellsId = spells.stream().mapToLong(Character_spell::getId).max().orElse(0) + 1;
+
+        for (Character_spell cs : character.getCharacters_spells()) {
+            cs.setId(maxSpellsId);
+            maxSpellsId++;
+        }
+    }
+
+    public void setCharacterAndIdForTalents(Character character) {
+
+        character.getCharacters_talents().forEach(character_talent -> character_talent.setCharacter(character));
+
+        List<Character_talent> talents = characterTalentRepository.findAll();
+
+        long maxTalentsId = talents.stream().mapToLong(Character_talent::getId).max().orElse(0) + 1;
+
+        for (Character_talent ct : character.getCharacters_talents()) {
+            ct.setId(maxTalentsId);
+            maxTalentsId++;
+        }
+    }
+
+    public void setCharacterAndIdForWeapons(Character character) {
+
+        character.getCharacters_weapons().forEach(character_weapon -> character_weapon.setCharacter(character));
+
+        List<Character_weapon> weapons = characterWeaponRepository.findAll();
+
+        long maxWeaponsId = weapons.stream().mapToLong(Character_weapon::getId).max().orElse(0) + 1;
+
+        for (Character_weapon cw : character.getCharacters_weapons()) {
+            cw.setId(maxWeaponsId);
+            maxWeaponsId++;
+        }
     }
 }

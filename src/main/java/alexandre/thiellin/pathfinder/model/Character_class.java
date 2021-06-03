@@ -3,7 +3,7 @@ package alexandre.thiellin.pathfinder.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "character_classes")
+@Table(name = "characters_classes")
 public class Character_class {
 
     @Id
@@ -20,9 +20,7 @@ public class Character_class {
     @Column(nullable = false)
     private int lvl;
 
-    public Character_class() {
-
-    }
+    public Character_class() {}
 
     public Character_class(int id, Character character, Class class_, int lvl) {
 

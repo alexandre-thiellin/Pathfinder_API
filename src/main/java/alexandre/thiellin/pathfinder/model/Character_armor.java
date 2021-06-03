@@ -1,12 +1,10 @@
 package alexandre.thiellin.pathfinder.model;
 
-import org.springframework.jmx.export.annotation.ManagedAttribute;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "inventory_items")
-public class Inventory_Item {
+@Table(name = "characters_armors")
+public class Character_armor {
 
     @Id
     private long id;
@@ -16,21 +14,22 @@ public class Inventory_Item {
     private Character character;
 
     @ManyToOne
-    @JoinColumn(name = "item_id", nullable = false)
-    private Item item;
+    @JoinColumn(name = "armor_id", nullable = false)
+    private Armor armor;
+
+    @Column(nullable = false)
+    private int quantity;
 
     @Column(nullable = false)
     private boolean equipped;
 
-    public Inventory_Item() {
+    public Character_armor() {}
 
-    }
-
-    public Inventory_Item(long id, Character character, Item item, boolean equipped) {
-
+    public Character_armor(long id, Character character, Armor armor, int quantity, boolean equipped) {
         this.id = id;
         this.character = character;
-        this.item = item;
+        this.armor = armor;
+        this.quantity = quantity;
         this.equipped = equipped;
     }
 
@@ -44,24 +43,27 @@ public class Inventory_Item {
         this.id = id;
     }
 
-//    public Character getCharacter() {
-//
-//        return character;
-//    }
-
     public void setCharacter(Character character) {
 
         this.character = character;
     }
 
-    public Item getItem() {
+    public Armor getArmor() {
 
-        return item;
+        return armor;
     }
 
-    public void setItem(Item item) {
+    public void setArmor(Armor armor) {
 
-        this.item = item;
+        this.armor = armor;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public boolean isEquipped() {

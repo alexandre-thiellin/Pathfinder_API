@@ -1,8 +1,6 @@
 package alexandre.thiellin.pathfinder.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "races")
@@ -17,17 +15,13 @@ public class Race {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "race")
-    private List<Character> characters = new ArrayList<>();
-
     public Race(){}
 
-    public Race(long id, String name, String description, List<Character> characters) {
+    public Race(long id, String name, String description) {
 
         this.id = id;
         this.name = name;
         this.description = description;
-        this.characters = characters;
     }
 
     public long getId() {

@@ -68,13 +68,13 @@ insert into character_talents values(0,1,2);
 insert into character_spells values(0,1,1);
 insert into character_spells values(0,1,2);
 
-insert into inventory_weapons values(0,1,1,true);
-insert into inventory_weapons values(0,1,4,false);
+insert into character_weapons values(0,1,1,true);
+insert into character_weapons values(0,1,4,false);
 
-insert into inventory_armors values(0,1,1,false);
-insert into inventory_armors values(0,1,3,false);
+insert into character_armors values(0,1,1,false);
+insert into character_armors values(0,1,3,false);
 
-insert into inventory_items values(0,1,1,false);
-insert into inventory_items values(0,1,2,false);
-insert into inventory_items values(0,1,3,false);
-insert into inventory_items values(0,1,4,false);
+insert into character_items values(0,1,1,false);
+insert into character_items values(0,1,2,false);
+insert into character_items values(0,1,3,false);
+insert into character_items values(0,1,4,false);
